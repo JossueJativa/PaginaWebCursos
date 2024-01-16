@@ -18,11 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('monolito.urls')),
-    path('', include('webpage.urls'))
+    path('', include('webpage.urls')),
+    path('docs/api/', include_docs_urls(title="Api Documentacion")),
 ]
 
 if settings.DEBUG:
