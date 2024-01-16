@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 text-center">
+            <h1 class="display-4">{{ curso.name }}</h1>
+            <img src="{{ curso.image.url }}" alt="Imagen de curso" class="img-fluid rounded mt-4" style="width: 50%;">
+            <p class="lead mt-3">{{ curso.description }}</p>
+            <p class="h4">Precio: ${{ curso.precio }}</p>
+
+            {% if user.is_authenticated %}
+            <!-- Botón para pagar -->
+            <a type="button" class="btn btn-success mt-3" href="#">Pagar</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

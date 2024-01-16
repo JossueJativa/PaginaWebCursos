@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+<div id="carouselExample" class="carousel slide" style="max-width: 100%; margin: auto; max-height: 50%;" data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-inner">
+        {% for curso in cursos %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <img src="{{ curso.image.url }}" class="d-block w-100" alt="Curso Image" width="400" height="400">
+        </div>
+        {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<div class="my-4 float-start" style="margin: 3%;">
+    {% for curso in cursos %}
+    <div class="card d-inline-block" style="width: 300px; margin-right: 10px;">
+        <img src="{{ curso.image.url }}" class="card-img-top" alt="Curso Image" width="300" height="300">
+        <div class="card-body">
+            <h5 class="card-title">{{ curso.name }}</h5>
+            <p class="card-text">{{ curso.description }}</p>
+            <p class="card-text">{{ curso.precio }}</p>
+            <a href="{% url 'webpage:curso' curso.id %}" class="btn btn-primary">Ingresar y pagar curso</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

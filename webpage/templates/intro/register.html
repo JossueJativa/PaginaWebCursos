@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+<div class="card text-center">
+    {% if error_message %}
+        <div class="alert alert-danger" role="alert">
+            {{ error_message }}
+        </div>
+    {% endif %}
+    <div class="card-header">
+        Registro de usuario
+    </div>
+    <form action="{% url 'webpage:register' %}" method="post">
+        <div class="card-body">
+            <h5 class="card-title">Registrate en CURSOS UDLA</h5>
+            <p class="card-text">Registrate en nuestra pagina para acceder a nuestros cursos</p>
+            {% csrf_token %}
+            <label for="username">Usuario</label><br>
+            <input type="text" placeholder="username" name="username" id="username">
+            <br>
+            <label for="email">Correo</label><br>
+            <input type="text" placeholder="Correo" name="email", id="email">
+            <br>
+            <label for="password">Contraseña</label><br>
+            <input type="password" placeholder="Contraseña" name="password", id="password">
+            <br>
+            <label for="password">Confirmar contraseña</label><br>
+            <input type="password" placeholder="Confirmar contraseña" name="password2", id="password2">
+            <br>
+            <hr>
+            <button type="submit">Registrarse</button>
+            <br>
+        </div>
+    </form>
+</div>
+{% endblock %}
