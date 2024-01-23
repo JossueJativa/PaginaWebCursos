@@ -10,9 +10,10 @@
             <p class="lead mt-3">{{ curso.description }}</p>
             <p class="h4">Precio: ${{ curso.precio }}</p>
 
-            {% if user.is_authenticated %}
-            <!-- Botón para pagar -->
-            <a type="button" class="btn btn-success mt-3" href="#">Pagar</a>
+            {% if curso_done != none %}
+            <a href="" class="btn btn-primary btn-lg mt-3">Obtener certificado</a>
+            {% else %}
+            <a href="{% url 'webpage:curso' curso.id %}" class="btn btn-primary btn-lg mt-3">Pagar el curso</a>
             {% endif %}
         </div>
     </div>
