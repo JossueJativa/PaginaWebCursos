@@ -1,3 +1,4 @@
+from datetime import date
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 
@@ -84,6 +85,7 @@ def register(request):
 def curso(request, curso_id):
     curso = Cursos.objects.get(pk=curso_id)
     user = User.objects.get(pk=request.user.id)
+    today = date.today()
     # Obtener el curso del usuario
     try:
         curso_user = user.cursos.filter(pk=curso_id).first()
@@ -92,7 +94,9 @@ def curso(request, curso_id):
         curso_user = None
     return render(request, "intro/curso.html", {
         "curso": curso,
-        "curso_done": curso_user
+        "curso_done": curso_user,
+        "user": user,
+        "today": today
     })
 
 def cursos_personales(request):

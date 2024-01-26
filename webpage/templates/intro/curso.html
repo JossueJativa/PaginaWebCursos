@@ -11,12 +11,29 @@
             <p class="h4">Precio: ${{ curso.precio }}</p>
 
             {% if curso_done != none %}
-            <a href="" class="btn btn-primary btn-lg mt-3">Obtener certificado</a>
+            <button class="btn btn-primary btn-lg mt-3" onclick="sendCertify('{{ user.username }}', '{{ curso.name }}', '{{ today }}', '{{ user.email }}')">Obtener certificado</button>
             {% else %}
             <a href="{% url 'webpage:curso' curso.id %}" class="btn btn-primary btn-lg mt-3">Pagar el curso</a>
             {% endif %}
         </div>
     </div>
 </div>
+
+<script>
+    async function sendCertify(username, curso, fecha, email) {
+        var url = `http://127.0.0.1:8081/certificado/${username}/${curso}/${fecha}/${email}/`;
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+
+            console.log(data);
+            alert(data.message);
+        } catch (error) {
+            console.error('Error al enviar la solicitud:', error);
+            // Manejar el error según sea necesario
+        }
+    }
+</script>
 
 {% endblock %}
